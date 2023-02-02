@@ -1,101 +1,60 @@
 const name = prompt("Имя")
-
-const lost_name = prompt("Фамилия")
-
-const den = parseInt(window.prompt("Дата рождения"));
-const month = parseInt(window.prompt('Месяц рождения'));
+const lostName = prompt("Фамилия")
+const den = +prompt("Дата рождения");
+const month = +prompt("Месяц рождения");
+const yearUser = +prompt("Год рождения")
+let currentlyYear = "2022"
+let year = currentlyYear - yearUser
+let years = year + " Лет"
 
 switch (month) {
     case 1:
-        if (den <= 19)
-            znak = 'Козерог';
-        else
-            znak = 'Водолей';
+        den <= 19 ? znak = 'Козерог &#9809' : znak = 'Водолей &#9810';
         break;
     case 2:
-        if (den <= 18)
-            znak = 'Водолей';
-        else
-            znak = 'Рыбы';
+        den <= 18 ? znak = 'Водолей &#9810' : znak = 'Рыбы &#9811';
         break;
     case 3:
-        if (den <= 20)
-            znak = 'Рыбы';
-        else
-            znak = 'Овен';
+        den <= 20 ? znak = 'Рыбы &#9811' : znak = 'Овен &#9800';
         break;
     case 4:
-        if (den <= 19)
-            znak = 'Овен';
-        else
-            znak = 'Телец';
+        den <= 19 ? znak = 'Овен &#9800' : znak = 'Телец &#9801';
         break;
     case 5:
-        if (den <= 20)
-            znak = 'Телец';
-        else
-            znak = 'Близнецы';
+        den <= 20 ? znak = 'Телец &#9801' : znak = 'Близнецы &#9802';
         break;
     case 6:
-        if (den <= 21)
-            znak = 'Близнецы';
-        else
-            znak = 'Рак';
+        den <= 21 ? znak = 'Близнецы &#9802' : znak = 'Рак &#9803';
         break;
     case 7:
-        if (den <= 22)
-            znak = 'Рак';
-        else
-            znak = 'Лев';
+        den <= 22 ? znak = 'Рак &#9803' : znak = 'Лев &#9804';
         break;
     case 8:
-        if (den <= 22)
-            znak = 'Лев';
-        else
-            znak = 'Дева';
+        den <= 22 ? znak = 'Лев &#9804' : znak = 'Дева &#9805';
         break;
     case 9:
-        if (den <= 22)
-            znak = 'Дева';
-        else
-            znak = 'Весы';
+        den <= 22 ? znak = 'Дева &#9805' : znak = 'Весы &#9806';
         break;
     case 10:
-        if (den <= 22)
-            znak = 'Весы';
-        else
-            znak = 'Скорпион';
+        den <= 22 ? znak = 'Весы &#9806' : znak = 'Скорпион &#9807';
         break;
     case 11:
-        if (den <= 22)
-            znak = 'Скорпион';
-        else
-            znak = 'Стрелец';
+        den <= 22 ? znak = 'Скорпион &#9807' : znak = 'Стрелец &#9808';
         break;
     case 12:
-        if (den <= 21)
-            znak = 'Стрелец';
-        else
-            znak = 'Козерог';
+        den <= 21 ? znak = 'Стрелец &#9808' : znak = 'Козерог &#9809';
         break;
 }
 
-const yearUser = prompt("Год рождения")
-let yearUserNumber = Number(yearUser)
-let currentlyYear = "2022"
-let year = currentlyYear - yearUserNumber
-let years = year + "Лет"
-
-function isLeapYear(yearUserNumber) {
-    return yearUserNumber % 400 === 0 || (yearUserNumber % 100 !== 0 && yearUserNumber % 4 === 0);
+function isLeapYear(yearUser) {
+    return yearUser % 400 === 0 || (yearUser % 100 !== 0 && yearUser % 4 === 0);
 }
-if (isLeapYear(yearUserNumber)) {
+if (isLeapYear(yearUser)) {
     a = "Высокосный год";
 } else {
     a = " Не высокосный год";
 }
 
-let c = yearUserNumber
-console.log("User Bio:" + name + lost_name + years + a + znak);
+console.log(`User Bio: ${name}, ${lostName}, ${years}, ${a}, ${znak}`);
 
-document.write("User Bio:" + name + lost_name + years + a + znak);
+document.write(`User Bio: ${name}, ${lostName}, ${years}, ${a}, ${znak}`);
