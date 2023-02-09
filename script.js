@@ -1,9 +1,8 @@
 let arr = []
-let userNumber = 0
 let res = 0
 
 while (true) {
-    userNumber = prompt('Enter a number from 2 to 10')
+    let userNumber = prompt('Enter a number from 2 to 10')
 
     if (Math.abs(userNumber) > 2 && Math.abs(userNumber) < 10) {
 
