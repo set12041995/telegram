@@ -50,11 +50,7 @@ function isLeapYear(yearUser) {
     return yearUser % 400 === 0 || (yearUser % 100 !== 0 && yearUser % 4 === 0);
 }
 if (isLeapYear(yearUser)) {
-    a = "Высокосный год";
+    document.write(`User Bio: ${name}, ${lostName}, ${years}, Высокосный год ${znak}`);
 } else {
-    a = " Не высокосный год";
+    document.write(`User Bio: ${name}, ${lostName}, ${years}, Не высокосный год ${znak}`);
 }
-
-console.log(`User Bio: ${name}, ${lostName}, ${years}, ${a}, ${znak}`);
-
-document.write(`User Bio: ${name}, ${lostName}, ${years}, ${a}, ${znak}`);
