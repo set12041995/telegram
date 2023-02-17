@@ -29,11 +29,11 @@ function getInfo(name, arr) {
                 row += `<th>${cell}</th>`;
             }
 
-            row += '</tr>';
-            table += row;
+            row = row + '</tr>';
+            table = table + row;
         }
 
-        table += '</table>';
+        table = table + '</table>';
         return header + table;
     }
 }
