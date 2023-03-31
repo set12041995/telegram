@@ -6,47 +6,84 @@ class Hamburger {
   static STUFFING_POTATO = { price: 15, calories: 10 };
   static TOPPING_MAYO = { price: 20, calories: 5 };
   static TOPPING_SPICE = { price: 15, calories: 0 };
-
+  
   constructor(size, stuffing) {
-    this.size = size;
-    this.stuffing = stuffing;
-    this.toppings = [];
+      this.size = size;
+      this.stuffing = stuffing;
+      this.topping = {
+          price: 0,
+          calories: 0
+      }
   }
-
   addTopping(topping) {
-    this.toppings.push(topping);
-  }
-
-  removeTopping(topping) {
-    const index = this.toppings.indexOf(topping);
-    if (index !== -1) {
-      this.toppings.splice(index, 1);
-    }
-  }
-
+      this.topping.price = this.topping.price + topping.price;
+      this.topping.calories = this.topping.calories + topping.calories;
+      return this.topping;
+  };
   get price() {
-    const toppingsPrice = this.toppings.reduce(
-      (acc, topping) => acc + topping.price,
-      0
-    );
-    return this.size.price + this.stuffing.price + toppingsPrice;
+      return this.size.price + this.stuffing.price + this.topping.price;
   }
-
   get calories() {
-    const toppingsCalories = this.toppings.reduce(
-      (acc, topping) => acc + topping.calories,
-      0
-    );
-    return this.size.calories + this.stuffing.calories + toppingsCalories;
+      return this.size.calories + this.stuffing.calories + this.topping.calories;
   }
 }
 
-const hamburger = new Hamburger(
-  Hamburger.SIZE_SMALL,
-  Hamburger.STUFFING_CHEESE
-);
-hamburger.addTopping(Hamburger.TOPPING_MAYO);
-console.log(`Calories: ${hamburger.calories}`);
-console.log(`Price: ${hamburger.price}`);
-hamburger.addTopping(Hamburger.TOPPING_SPICE);
-console.log(`Price with sauce: ${hamburger.price}`);
+const form = document.querySelector(".form");
+const orderList = document.querySelector(".user-order");
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const topping = [...document.querySelectorAll("input.topping:checked")];
+  if (topping.length === 0) {
+    alert("Выберите специи");
+  } else {
+    const userName = document.getElementById("user-name").value;
+    const burgerSize = document.getElementById("burger-size").value;
+    const burgerSizeText = document.querySelector(
+      "#burger-size option:checked"
+    ).textContent;
+    const stuffing = document.querySelector("input.stuffing:checked").value;
+    const stuffingText = document.querySelector("input.stuffing:checked")
+      .parentElement.textContent;
+    const randomValue = Math.round(Math.random() * 30);
+    let toppingText = [];
+    const hamburger = new Hamburger(Hamburger[burgerSize], Hamburger[stuffing]);
+
+    addToppingAndMessage(topping, toppingText, hamburger);
+    createOrder(
+      userName,
+      burgerSizeText,
+      stuffingText,
+      toppingText,
+      randomValue,
+      hamburger
+    );
+    form.reset();
+  }
+});
+
+const createOrder = (
+  userName,
+  burgerSize,
+  stuffing,
+  topping,
+  time,
+  hamburger
+) => {
+  const userOrder = document.createElement("div");
+  userOrder.classList.add("order-item");
+  userOrder.innerHTML = `<fieldset>
+      <legend>Ваш заказ</legend>
+      <p>Привет, ${userName}.</p>
+          <p>Ваш заказ ${burgerSize} бургер ${stuffing} и ${topping} будет готов в течении ${time} минут</p>
+          <p>Стоимость заказа: $${hamburger.price} (${hamburger.calories} калорий)</p>
+          </fieldset>`;
+  orderList.appendChild(userOrder);
+};
+
+function addToppingAndMessage(topping, toppingText, hamburger) {
+  topping.forEach((item) => {
+    toppingText.push(item.parentElement.textContent);
+    hamburger.addTopping(Hamburger[item.id]);
+  });
+}

@@ -1,0 +1,23 @@
+.body {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    box-sizing: border-box;
+    background-size: cover;
+    height: 100vh;
+    font-size: 20px;
+}
+
+.form {
+    width: max-content;
+}
+
+fieldset {
+    border-radius: 20px;
+    padding-top: 10px;
+  }
+
+.user-order {
+    width: 60%;
+}
+

@@ -1,16 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-    <script src="./script.js"></script>
-</head>
+  </head>
 
-<body>
-    <h1>Homework_12</h1>
-</body>
+  <body class="body">
 
+    <form class="form" action="" method="get">
+      <fieldset>
+        <legend>Оформите заказ</legend>
+
+          <label
+            >Имя клиента:
+            <input type="text" name="user-name" id="user-name" required />
+          </label>
+
+       
+        <div>
+          <label
+            >Размер бургера:
+            <select name="burger-size" id="burger-size" required>
+              <option value="SIZE_SMALL">маленький</option>
+              <option value="SIZE_BIG">большой</option>
+            </select>
+          </label>
+        </div>
+        <br />
+
+        <div>
+          <label>Выбор начинки:</label>
+          <div>
+            <input
+              class="stuffing"
+              type="radio"
+              name="stuffing"
+              id="cheese"
+              value="STUFFING_CHEESE"
+              required
+            />
+            с сыром
+          </div>
+
+          <div>
+            <input
+              class="stuffing"
+              type="radio"
+              name="stuffing"
+              id="salad"
+              value="STUFFING_SALAD"
+            />
+           с салатом
+          </div>
+
+          <div>
+            <input
+              class="stuffing"
+              type="radio"
+              name="stuffing"
+              id="potato"
+              value="STUFFING_POTATO"
+            />
+           с картошкой
+          </div>
+        </div>
+        <br />
+
+        <div>
+          <label>Выбор специй:</label>
+
+          <div>
+            <input
+              class="topping"
+              type="checkbox"
+              name="topping"
+              id="TOPPING_MAYO"
+            />с майонезом
+          </div>
+
+          <div>
+            <input
+              class="topping"
+              type="checkbox"
+              name="topping"
+              id="TOPPING_SPICE"
+            />с соусом
+          </div>
+        </div>
+        <br />
+
+        <div>
+          <label>Сообщение к заказу:</label>
+          <br />
+          <textarea name="user-message" id="user-message" required></textarea>
+        </div>
+
+        <div>
+          <button class="btn submit" type="submit">Заказать</button>
+        </div>
+      </fieldset>
+    </form>
+
+    <div class="user-order"></div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
