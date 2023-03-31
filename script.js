@@ -6,25 +6,25 @@ class Hamburger {
   static STUFFING_POTATO = { price: 15, calories: 10 };
   static TOPPING_MAYO = { price: 20, calories: 5 };
   static TOPPING_SPICE = { price: 15, calories: 0 };
-  
+
   constructor(size, stuffing) {
-      this.size = size;
-      this.stuffing = stuffing;
-      this.topping = {
-          price: 0,
-          calories: 0
-      }
+    this.size = size;
+    this.stuffing = stuffing;
+    this.topping = {
+      price: 0,
+      calories: 0,
+    };
   }
   addTopping(topping) {
-      this.topping.price = this.topping.price + topping.price;
-      this.topping.calories = this.topping.calories + topping.calories;
-      return this.topping;
-  };
+    this.topping.price = this.topping.price + topping.price;
+    this.topping.calories = this.topping.calories + topping.calories;
+    return this.topping;
+  }
   get price() {
-      return this.size.price + this.stuffing.price + this.topping.price;
+    return this.size.price + this.stuffing.price + this.topping.price;
   }
   get calories() {
-      return this.size.calories + this.stuffing.calories + this.topping.calories;
+    return this.size.calories + this.stuffing.calories + this.topping.calories;
   }
 }
 
@@ -74,7 +74,7 @@ const createOrder = (
   userOrder.classList.add("order-item");
   userOrder.innerHTML = `<fieldset>
       <legend>Ваш заказ</legend>
-      <p>Привет, ${userName}.</p>
+          <p>Привет, ${userName}.</p>
           <p>Ваш заказ ${burgerSize} бургер ${stuffing} и ${topping} будет готов в течении ${time} минут</p>
           <p>Стоимость заказа: $${hamburger.price} (${hamburger.calories} калорий)</p>
           </fieldset>`;
