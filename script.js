@@ -15,6 +15,7 @@ class Hamburger {
       calories: 0,
     };
   }
+  
   addTopping(topping) {
     this.topping.price = this.topping.price + topping.price;
     this.topping.calories = this.topping.calories + topping.calories;
