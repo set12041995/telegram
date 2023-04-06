@@ -1,56 +1,85 @@
-const name = prompt("Имя")
-const lostName = prompt("Фамилия")
-const den = +prompt("Дата рождения");
-const month = +prompt("Месяц рождения");
-const yearUser = +prompt("Год рождения")
-let currentlyYear = "2022"
-let year = currentlyYear - yearUser
-let years = year + " Лет"
+let block = document.querySelector(".block");
+let bodyWidth = document.body.clientWidth / 2 + "px";
+let bodyHeight = document.body.clientHeight / 2 + "px";
+block.style.top = bodyHeight;
+block.style.left = bodyWidth;
+let blockWidth = "100px";
+let blockHeight = "100px";
+block.style.width = blockWidth;
+block.style.height = blockHeight;
 
-switch (month) {
-    case 1:
-        den <= 19 ? znak = 'Козерог &#9809' : znak = 'Водолей &#9810';
-        break;
-    case 2:
-        den <= 18 ? znak = 'Водолей &#9810' : znak = 'Рыбы &#9811';
-        break;
-    case 3:
-        den <= 20 ? znak = 'Рыбы &#9811' : znak = 'Овен &#9800';
-        break;
-    case 4:
-        den <= 19 ? znak = 'Овен &#9800' : znak = 'Телец &#9801';
-        break;
-    case 5:
-        den <= 20 ? znak = 'Телец &#9801' : znak = 'Близнецы &#9802';
-        break;
-    case 6:
-        den <= 21 ? znak = 'Близнецы &#9802' : znak = 'Рак &#9803';
-        break;
-    case 7:
-        den <= 22 ? znak = 'Рак &#9803' : znak = 'Лев &#9804';
-        break;
-    case 8:
-        den <= 22 ? znak = 'Лев &#9804' : znak = 'Дева &#9805';
-        break;
-    case 9:
-        den <= 22 ? znak = 'Дева &#9805' : znak = 'Весы &#9806';
-        break;
-    case 10:
-        den <= 22 ? znak = 'Весы &#9806' : znak = 'Скорпион &#9807';
-        break;
-    case 11:
-        den <= 22 ? znak = 'Скорпион &#9807' : znak = 'Стрелец &#9808';
-        break;
-    case 12:
-        den <= 21 ? znak = 'Стрелец &#9808' : znak = 'Козерог &#9809';
-        break;
+function createBoom() {
+  let boom = document.createElement("div");
+  boom.innerText = "БЕМС";
+  boom.classList.add("boom");
+  block.appendChild(boom);
+  boom.style.position = "absolute";
+  boom.style.top = "50%";
+  boom.style.left = "50%";
+  boom.style.transform = "translate(-50%, -50%)";
+  boom.style.color = "blue";
+  boom.style.fontSize = "30px";
+  setTimeout(() => {
+    block.removeChild(boom);
+  }, 2000);
 }
 
-function isLeapYear(yearUser) {
-    return yearUser % 400 === 0 || (yearUser % 100 !== 0 && yearUser % 4 === 0);
+function movement(event) {
+  if (event.code === "ArrowUp") {
+    // w
+    block.style.top = parseInt(block.style.top) - 10 + "px";
+    if (parseInt(block.style.top) < 0) {
+      block.style.top = parseInt(block.style.top) + 20 + "px";
+      createBoom();
+    }
+  }
+
+  if (event.code === "ArrowLeft") {
+    // a
+    block.style.left = parseInt(block.style.left) - 10 + "px";
+    if (parseInt(block.style.left) < 0) {
+      block.style.left = parseInt(block.style.left) + 20 + "px";
+      createBoom();
+    }
+  }
+
+  if (event.code === "ArrowDown") {
+    // s
+    block.style.top = parseInt(block.style.top) + 10 + "px";
+    if (parseInt(block.style.top) > document.body.clientHeight - 100) {
+      block.style.top = parseInt(block.style.top) - 20 + "px";
+      createBoom();
+    }
+  }
+
+  if (event.code === "ArrowRight") {
+    // d
+    block.style.left = parseInt(block.style.left) + 10 + "px";
+    if (parseInt(block.style.left) > document.body.clientWidth - 100) {
+      block.style.left = parseInt(block.style.left) - 20 + "px";
+      createBoom();
+    }
+  }
+
+  if (event.keyCode === 32) {
+    // пробел
+    block.style.top = parseInt(block.style.top) - 10 + "px";
+    setTimeout(() => {
+      block.style.top = bodyHeight;
+      block.style.left = bodyWidth;
+    }, 500);
+  }
+
+  if (event.ctrlKey) {
+    block.style.height = parseInt(block.style.height) * 0.6 + "px";
+    block.style.width = parseInt(block.style.width) * 1.25 + "px";
+    block.style.transition = "all 0.5s ease";
+  } else {
+    block.style.width = blockWidth;
+    block.style.height = blockHeight;
+    block.style.transition = "all 0.5s ease";
+  }
 }
-if (isLeapYear(yearUser)) {
-    document.write(`User Bio: ${name}, ${lostName}, ${years}, Высокосный год ${znak}`);
-} else {
-    document.write(`User Bio: ${name}, ${lostName}, ${years}, Не высокосный год ${znak}`);
-}
+
+document.addEventListener("keydown", movement);
+document.addEventListener("keyup", movement);
