@@ -1,16 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="container-content">
+        <form>
+          <p class="msi">MSI 2020</p>
+          <h1 class="hey">Hey!</h1>
+          <p class="title">Let’s try to find a joke for you:</p>
+
+          <div class="radios">
+            <input name="radioButton" id="random" type="radio" value="random" />
+            <label for="random">Random</label>
+          </div>
+
+          <div class="radios">
+            <input
+              name="radioButton"
+              id="categories"
+              type="radio"
+              value="categories"
+            />
+            <label for="categories">From categories</label>
+          </div>
+
+          <div class="category-wrap"></div>
+
+          <div class="radios">
+            <input name="radioButton" id="search" type="radio" value="search" />
+            <label for="search">Search</label>
+          </div>
+
+          <input
+            class="searchInput"
+            id="freeText"
+            type="text"
+            placeholder="Free text search..."
+          />
+
+          <button class="submitFrom" type="submit">Get a joke</button>
+        </form>
+
+        <div class="joke-list" id="joke-list"></div>
+      </div>
+
+      <div class="favouriteBlock">
+        <div>
+          <button class="favouriteButton" type="button"></button>
+        </div>
+
+        <div>
+          <h3 class="favourite">Favourite</h3>
+        </div>
+      </div>
+
+      <div class="container-favourite">
+        <div class="jokeFavourite" id="jokeFavourite"></div>
+      </div>
+    </div>
     <script src="./script.js"></script>
-</head>
-
-<body>
-    <h1>Homework_3</h1>
-</body>
-
+  </body>
 </html>
