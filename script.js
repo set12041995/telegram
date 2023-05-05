@@ -2,7 +2,7 @@ let form = document.querySelector("form");
 let createdHerosWeapper = document.querySelector("#createdHeros");
 let heroes = {};
 
-let render = (hero) => {
+let render = async (hero) => {
   let heroBlock = document.createElement("form");
   heroBlock.dataset.id = hero.id;
 
@@ -16,14 +16,18 @@ let render = (hero) => {
   let labelComics = document.createElement("label");
   labelComics.innerText = "Comics:";
   let selectName = document.createElement("select");
-  let optionDC = document.createElement("option");
-  optionDC.value = "DC";
-  optionDC.innerText = "DC";
-  selectName.append(optionDC);
-  let optionMarvel = document.createElement("option");
-  optionMarvel.value = "Marvel";
-  optionMarvel.innerText = "Marvel";
-  selectName.append(optionMarvel);
+
+  let universes = await fetch(
+    "https://63693f7228cd16bba71904e4.mockapi.io/universes"
+  ).then((res) => res.json());
+
+  universes.forEach((universe) => {
+    let option = document.createElement("option");
+    option.value = universe.name;
+    option.innerText = universe.name;
+    selectName.append(option);
+  });
+
   selectName.value = hero.universe;
   labelComics.append(selectName);
   heroBlock.append(labelComics);
