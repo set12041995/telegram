@@ -1,56 +1,153 @@
-const name = prompt("Имя")
-const lostName = prompt("Фамилия")
-const den = +prompt("Дата рождения");
-const month = +prompt("Месяц рождения");
-const yearUser = +prompt("Год рождения")
-let currentlyYear = "2022"
-let year = currentlyYear - yearUser
-let years = year + " Лет"
+let form = document.querySelector("form");
+let createdHerosWeapper = document.querySelector("#createdHeros");
+let heroes = {};
 
-switch (month) {
-    case 1:
-        den <= 19 ? znak = 'Козерог &#9809' : znak = 'Водолей &#9810';
-        break;
-    case 2:
-        den <= 18 ? znak = 'Водолей &#9810' : znak = 'Рыбы &#9811';
-        break;
-    case 3:
-        den <= 20 ? znak = 'Рыбы &#9811' : znak = 'Овен &#9800';
-        break;
-    case 4:
-        den <= 19 ? znak = 'Овен &#9800' : znak = 'Телец &#9801';
-        break;
-    case 5:
-        den <= 20 ? znak = 'Телец &#9801' : znak = 'Близнецы &#9802';
-        break;
-    case 6:
-        den <= 21 ? znak = 'Близнецы &#9802' : znak = 'Рак &#9803';
-        break;
-    case 7:
-        den <= 22 ? znak = 'Рак &#9803' : znak = 'Лев &#9804';
-        break;
-    case 8:
-        den <= 22 ? znak = 'Лев &#9804' : znak = 'Дева &#9805';
-        break;
-    case 9:
-        den <= 22 ? znak = 'Дева &#9805' : znak = 'Весы &#9806';
-        break;
-    case 10:
-        den <= 22 ? znak = 'Весы &#9806' : znak = 'Скорпион &#9807';
-        break;
-    case 11:
-        den <= 22 ? znak = 'Скорпион &#9807' : znak = 'Стрелец &#9808';
-        break;
-    case 12:
-        den <= 21 ? znak = 'Стрелец &#9808' : znak = 'Козерог &#9809';
-        break;
-}
+let render = (hero) => {
+  let heroBlock = document.createElement("form");
+  heroBlock.dataset.id = hero.id;
 
-function isLeapYear(yearUser) {
-    return yearUser % 400 === 0 || (yearUser % 100 !== 0 && yearUser % 4 === 0);
-}
-if (isLeapYear(yearUser)) {
-    document.write(`User Bio: ${name}, ${lostName}, ${years}, Высокосный год ${znak}`);
-} else {
-    document.write(`User Bio: ${name}, ${lostName}, ${years}, Не высокосный год ${znak}`);
-}
+  let labelName = document.createElement("label");
+  labelName.innerText = "Name:";
+  let inputName = document.createElement("input");
+  inputName.value = hero.name;
+  labelName.append(inputName);
+  heroBlock.append(labelName);
+
+  let labelComics = document.createElement("label");
+  labelComics.innerText = "Comics:";
+  let selectName = document.createElement("select");
+  let optionDC = document.createElement("option");
+  optionDC.value = "DC";
+  optionDC.innerText = "DC";
+  selectName.append(optionDC);
+  let optionMarvel = document.createElement("option");
+  optionMarvel.value = "Marvel";
+  optionMarvel.innerText = "Marvel";
+  selectName.append(optionMarvel);
+  selectName.value = hero.universe;
+  labelComics.append(selectName);
+  heroBlock.append(labelComics);
+
+  let labelFavorite = document.createElement("label");
+  labelFavorite.innerText = "Favorite:";
+  labelFavorite.setAttribute("data-name", "favorite");
+  let checkboxFavorite = document.createElement("input");
+  checkboxFavorite.type = "checkbox";
+  checkboxFavorite.checked = hero.favorite;
+  checkboxFavorite.addEventListener("change", async (e) => {
+    let updatedHero = {
+      name: inputName.value,
+      universe: selectName.value,
+      favorite: checkboxFavorite.checked,
+    };
+    await updateHero(hero.id, updatedHero);
+  });
+
+  labelFavorite.append(checkboxFavorite);
+  heroBlock.append(labelFavorite);
+
+  let updateButton = document.createElement("button");
+  updateButton.id = "update";
+  updateButton.innerText = "Update";
+
+  updateButton.addEventListener("click", async (e) => {
+    e.preventDefault();
+    let updatedHero = {
+      name: inputName.value,
+      universe: selectName.value,
+      favorite: checkboxFavorite.checked,
+    };
+    await updateHero(hero.id, updatedHero);
+  });
+
+  let deleteButton = document.createElement("button");
+  deleteButton.id = "delete";
+  deleteButton.innerText = "Delete";
+
+  deleteButton.addEventListener("click", async (e) => {
+    e.preventDefault();
+    await deleteHero(hero.id);
+    heroBlock.remove();
+    delete heroes[hero.name];
+  });
+
+  heroBlock.append(updateButton, deleteButton);
+  createdHerosWeapper.append(heroBlock);
+  heroes[hero.name] = hero;
+};
+
+let updateHero = async (id, obj) => {
+  let result = await fetch(
+    `https://63693f7228cd16bba71904e4.mockapi.io/heroes/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    }
+  ).then((res) => res.json());
+  heroes[result.name] = result;
+};
+
+let deleteHero = async (id) => {
+  await fetch(`https://63693f7228cd16bba71904e4.mockapi.io/heroes/${id}`, {
+    method: "DELETE",
+  });
+};
+
+let createHero = async (obj) => {
+  let result = await fetch(
+    "https://63693f7228cd16bba71904e4.mockapi.io/heroes",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    }
+  ).then((res) => res.json());
+  render(result);
+};
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  let name = form.querySelector('input[data-name="name"]');
+  let universe = form.querySelector("select");
+  let favorite = form.querySelector('input[type="checkbox"]');
+
+  let newHero = {
+    name: name.value,
+    universe: universe.value,
+    favorite: favorite.checked,
+  };
+
+  if (heroes[newHero.name]) {
+    console.error(`A hero with the name "${newHero.name}" already exists!`);
+    return;
+  }
+
+  await createHero(newHero);
+});
+
+let getExistedHerors = async () => {
+  let result = await fetch(
+    "https://63693f7228cd16bba71904e4.mockapi.io/heroes",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  ).then((res) => res.json());
+
+  result.forEach((element) => {
+    render(element);
+    heroes[element.name] = element;
+  });
+
+  return result;
+};
+
+getExistedHerors();
