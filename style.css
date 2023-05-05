@@ -1,0 +1,25 @@
+*{
+    margin: 0px;
+padding: 0px;
+block-size: block;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border: 2px black solid;
+    border-radius: 50px;
+    margin: 50px auto;
+    padding: 30px;
+}
+
+label{
+    margin: 10px;
+}
+
+#createdHeros{
+    display: flex;
+    flex-wrap: wrap;
+}
+

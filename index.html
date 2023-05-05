@@ -6,11 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./script.js"></script>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <h1>Homework_3</h1>
+<form>
+
+<label for="">Name:
+    <input type="text" data-name="name">
+</label>
+
+<label for="">Comics:
+   <select name="" id="" data-name="universe">
+    <option value="DC">DC</option>
+   <option value="Marvel">Marvel</option>
+</select>
+</label>
+
+<label for="" data-name="favorite">Favorite:
+    <input type="checkbox">
+</label>
+
+<button>Add hero</button>
+
+</form>
+
+<div id="createdHeros">
+
+</div>
+
+    <script src="./script.js"></script>
 </body>
 
 </html>
