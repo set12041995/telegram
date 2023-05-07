@@ -15,18 +15,17 @@ const colorsWrap = $("<div></div>")
 body.append(imageDiv, title, colorsWrap);
 imageDiv.prepend(image);
 
-const getData = async () => {
+let getData = async () => {
   try {
     const response = await $.ajax({
-      url:
-        "https://raw.githubusercontent.com/brightestsirius/Front-end-Pro-19/master/lesson_27/tesla.json",
+      url: "https://raw.githubusercontent.com/brightestsirius/Front-end-Pro-19/master/lesson_27/tesla.json",
       method: "GET",
       dataType: "JSON",
     });
 
     const data = response;
 
-    $.each(data, function (index, item) {
+    $.each(data, function(index, item) {
       const color = $("<div></div>")
         .addClass("color")
         .css({
@@ -38,25 +37,33 @@ const getData = async () => {
           margin: "1px 2px",
           display: "inline-block",
         })
-        .click(function (e) {
-          const img = item.img;
-          const text = item.title;
-          colorsWrap.find(".color").css({
-            boxShadow: "none",
-            marginTop: "0px",
-          });
-          $(this).css({
-            boxShadow:
-              "0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15)",
-            marginTop: "-5px",
-          });
-          image.attr(
-            "src",
-            `https://mc-astro.github.io/tesla-roadster-colors/img/${img}.jpg`
-          );
-          title.text(text);
+        .data({
+          img: item.img,
+          title: item.title,
         });
       colorsWrap.append(color);
+    });
+
+    colorsWrap.on("click", ".color", function(e) {
+      const img = $(this).data("img");
+      const text = $(this).data("title");
+
+      $(".color").css({
+        boxShadow: "none",
+        marginTop: "0px",
+      });
+
+      $(this).css({
+        boxShadow: "0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15)",
+        marginTop: "-5px",
+      });
+
+      image.attr(
+        "src",
+        `https://mc-astro.github.io/tesla-roadster-colors/img/${img}.jpg`
+      );
+
+      title.text(text);
     });
   } catch (error) {
     console.log(error);
