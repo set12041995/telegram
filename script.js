@@ -1,56 +1,66 @@
-const name = prompt("Имя")
-const lostName = prompt("Фамилия")
-const den = +prompt("Дата рождения");
-const month = +prompt("Месяц рождения");
-const yearUser = +prompt("Год рождения")
-let currentlyYear = "2022"
-let year = currentlyYear - yearUser
-let years = year + " Лет"
+const body = $("body");
+const imageDiv = $("<div></div>");
+const image = $("<img>")
+  .attr("src", "https://mc-astro.github.io/tesla-roadster-colors/img/black.jpg")
+  .css({ width: "100%" });
 
-switch (month) {
-    case 1:
-        den <= 19 ? znak = 'Козерог &#9809' : znak = 'Водолей &#9810';
-        break;
-    case 2:
-        den <= 18 ? znak = 'Водолей &#9810' : znak = 'Рыбы &#9811';
-        break;
-    case 3:
-        den <= 20 ? znak = 'Рыбы &#9811' : znak = 'Овен &#9800';
-        break;
-    case 4:
-        den <= 19 ? znak = 'Овен &#9800' : znak = 'Телец &#9801';
-        break;
-    case 5:
-        den <= 20 ? znak = 'Телец &#9801' : znak = 'Близнецы &#9802';
-        break;
-    case 6:
-        den <= 21 ? znak = 'Близнецы &#9802' : znak = 'Рак &#9803';
-        break;
-    case 7:
-        den <= 22 ? znak = 'Рак &#9803' : znak = 'Лев &#9804';
-        break;
-    case 8:
-        den <= 22 ? znak = 'Лев &#9804' : znak = 'Дева &#9805';
-        break;
-    case 9:
-        den <= 22 ? znak = 'Дева &#9805' : znak = 'Весы &#9806';
-        break;
-    case 10:
-        den <= 22 ? znak = 'Весы &#9806' : znak = 'Скорпион &#9807';
-        break;
-    case 11:
-        den <= 22 ? znak = 'Скорпион &#9807' : znak = 'Стрелец &#9808';
-        break;
-    case 12:
-        den <= 21 ? znak = 'Стрелец &#9808' : znak = 'Козерог &#9809';
-        break;
-}
+const title = $("<div></div>")
+  .text("Solid Black")
+  .css({ textAlign: "center", margin: "20px", color: "#cccccc" });
 
-function isLeapYear(yearUser) {
-    return yearUser % 400 === 0 || (yearUser % 100 !== 0 && yearUser % 4 === 0);
-}
-if (isLeapYear(yearUser)) {
-    document.write(`User Bio: ${name}, ${lostName}, ${years}, Высокосный год ${znak}`);
-} else {
-    document.write(`User Bio: ${name}, ${lostName}, ${years}, Не высокосный год ${znak}`);
-}
+const colorsWrap = $("<div></div>")
+  .addClass("colorsWrap")
+  .css({ justifyContent: "center", display: "flex" });
+
+body.append(imageDiv, title, colorsWrap);
+imageDiv.prepend(image);
+
+const getData = async () => {
+  try {
+    const response = await $.ajax({
+      url:
+        "https://raw.githubusercontent.com/brightestsirius/Front-end-Pro-19/master/lesson_27/tesla.json",
+      method: "GET",
+      dataType: "JSON",
+    });
+
+    const data = response;
+
+    $.each(data, function (index, item) {
+      const color = $("<div></div>")
+        .addClass("color")
+        .css({
+          backgroundColor: item.color,
+          width: "25px",
+          height: "35px",
+          borderRadius: "2px",
+          cursor: "pointer",
+          margin: "1px 2px",
+          display: "inline-block",
+        })
+        .click(function (e) {
+          const img = item.img;
+          const text = item.title;
+          colorsWrap.find(".color").css({
+            boxShadow: "none",
+            marginTop: "0px",
+          });
+          $(this).css({
+            boxShadow:
+              "0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.15)",
+            marginTop: "-5px",
+          });
+          image.attr(
+            "src",
+            `https://mc-astro.github.io/tesla-roadster-colors/img/${img}.jpg`
+          );
+          title.text(text);
+        });
+      colorsWrap.append(color);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+getData();
