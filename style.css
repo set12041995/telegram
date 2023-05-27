@@ -1,0 +1,415 @@
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(232, 228, 228);
+  }
+
+
+header{
+    background-color: forestgreen;
+    padding: 5px 50px;  
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.logo{
+    display: flex;
+}
+
+.logo_redirect{
+    display: flex;
+}
+
+.logo_img{
+
+}
+
+.right_block{
+    display: flex;
+    margin: 10px;
+    gap: 10px;
+}
+
+.login_block{
+    display: flex;
+    align-items: center;
+}
+
+.login{
+    color: white;
+    text-decoration: none;
+}
+
+.logOutBlock{
+    display: flex;
+    align-items: center;
+       display: none;
+}
+
+.logOut{
+    color: white;
+    text-decoration: none;
+}
+
+.shopping_block{
+    display: flex;
+    border-left: solid 2px white;
+    padding-left: 10px;
+}
+.shopping_cart{
+    display: flex;
+}
+
+.cart_counter{
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: -6px;
+    color: forestgreen;
+}
+
+
+
+
+
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 800px;
+    margin: 20px auto;
+  }
+  
+.invalidEmail{
+    border-radius: 5px;
+background-color: rgb(235, 184, 184);
+padding: 3px;
+padding-left: 15px;
+display: none;
+}
+
+
+.invalidPassword{
+    border-radius: 5px;
+background-color: rgb(235, 184, 184);
+padding: 3px;
+padding-left: 15px;
+display: none;
+}
+
+
+.mailAlreadyExist{
+    border-radius: 5px;
+background-color: rgb(235, 184, 184);
+padding: 3px;
+padding-left: 15px;
+display: none;
+}
+
+
+.passwordNotMatches{
+    border-radius: 5px;
+background-color: rgb(235, 184, 184);
+padding: 3px;
+padding-left: 15px;
+display: none;
+}
+
+  form {
+    width: 380px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  form h1, form h2 {
+    text-align: center;
+  }
+  
+  form div {
+    margin-bottom: 10px;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  form input[type="text"],
+  form input[type="email"],
+  form input[type="password"] {
+    width: -webkit-fill-available;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #bf0f0f;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+  
+  form button[type="submit"]:hover {
+    background-color: red;
+  }
+  
+
+
+
+
+
+
+.category H2{
+    margin-left: 20px;
+    margin-bottom: 0px;
+}
+
+
+
+  .category__container{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+
+  .product{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+    width: 200px;
+    border-radius: 10px;
+    border: solid #ccc;
+  }
+
+  .productImg{
+    width: 100px;
+padding-left: 0px;
+  }
+
+  .saleWrapper{
+    display: flex;
+  }
+
+  .discountedPriceWrapper{
+    text-decoration: line-through;
+    color: rgb(135, 132, 132);
+    font-size: 25px;
+  }
+
+  .sale{
+    background-color: forestgreen;
+    color: white;
+    border-radius: 3px;
+    width: 55px;
+   display: flex;
+   justify-content: center;
+   padding: 3px;
+   margin-left: 15px;
+   align-items: center;
+
+  }
+
+  .priceWrapper{
+    padding-top: 20px;
+    display: flex;
+    margin-top: auto;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    font-size: 20px;
+    font-weight: bolder
+
+
+  }
+
+  .shoppingCartWrapper{
+    border-radius: 5px;
+    width: max-content;
+    width: 60px;
+    height: 39px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .shoppingCartProduct{
+  width: 25px;
+  height: 25px;
+    margin: 7px;
+  }
+
+ 
+
+
+
+
+
+
+
+
+.title{
+color: forestgreen;
+margin: 15px;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+}
+.items{
+    width: 70%;
+    position: relative;
+    margin: 15px;
+}
+.cart-table{
+    width: 70%;
+    position: relative;
+}
+.table-header-row{
+    position: relative;
+    width: 100%;
+    display: flex;
+    background-color: silver;
+    justify-content: space-around;
+}
+.big{
+    display: flex;
+    width: 30%;
+    text-align: center;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.small{
+    position: relative;
+    width: 8%;
+    text-align: center;
+}
+.table-row{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    border-bottom: 2px solid black;
+}
+.cart-product-img{
+    width: 100px;
+    height: 100px;
+}
+
+.imgDelete{
+    width: 30px;
+    height: 30px;
+}
+.summary-wrapper{
+    width: 30%;
+    position: relative;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.summary-title{
+    color: forestgreen;
+}
+.complete-order{
+    width: max-content;
+    padding: 7px 31px;
+    background-color: crimson;
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+    margin: auto;
+    cursor: pointer;
+}
+.summary-row{
+    width: 95%;
+    display: flex;
+    margin: 15px 0px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cartItemRow{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: solid 2px silver;
+}
+
+
+
+
+
+
+
+
+
+.name{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+}
+
+.email{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.deleteAccount{
+    display: flex;
+    justify-content: center;
+    background-color: #dea4a4;
+    width: max-content;
+    padding: 12px;
+    border-radius: 30px;
+    margin: 0 auto;
+    color: #8b2727;
+    cursor: pointer;
+}
+
+
+
+
+
+
+.mainAccount{
+    display: flex;
+    flex-direction: row;
+}
+
+.myInfo{
+    color: forestgreen;
+}
+.info{
+width: 95%;
+display: flex;
+margin: 15px 0px;
+flex-direction: column;
+}
+
+
+.saleTrue{
+    background-color: forestgreen;
+    color: white;
+    border-radius: 5px;
+}
