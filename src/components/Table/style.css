@@ -1,0 +1,53 @@
+.todo-table {
+  border-collapse: collapse;
+  width: 60%;
+}
+
+.todo-table-header {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+ul {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.pending {
+  background-color: red;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.completed {
+  background-color: seagreen;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.edit {
+  background-color: blue;
+  border-radius: 10px;
+  margin-right: 10px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.delete {
+  background-color: red;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.headerTable {
+  display: flex;
+  gap: 10px;
+  margin: 30px;
+}
