@@ -1,10 +1,12 @@
-import React, { useState} from 'react';
-import axios from 'axios';
-import './style.css'; 
+import React, { useState } from "react";
+import axios from "axios";
+import "./style.css";
 
 async function getUsers() {
   try {
-    const response = await axios.get('https://634e9f834af5fdff3a625f84.mockapi.io/users');
+    const response = await axios.get(
+      "https://634e9f834af5fdff3a625f84.mockapi.io/users"
+    );
     return response.data;
   } catch (error) {
     console.log(error);
@@ -21,19 +23,22 @@ async function createUser(name, email, password) {
   };
 
   try {
-    const response = await axios.post('https://634e9f834af5fdff3a625f84.mockapi.io/users', user);
+    const response = await axios.post(
+      "https://634e9f834af5fdff3a625f84.mockapi.io/users",
+      user
+    );
     return response.data;
   } catch (error) {
     console.log(error);
-    throw new Error('Error creating user');
+    throw new Error("Error creating user");
   }
 }
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [verifyPassword, setVerifyPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [verifyPassword, setVerifyPassword] = useState("");
   const [invalidEmail, setInvalidEmail] = useState(false);
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [mailAlreadyExist, setMailAlreadyExist] = useState(false);
@@ -48,30 +53,36 @@ export default function LoginForm() {
     };
 
     const users = await getUsers();
-    const loggedInUser = users.find(user => user.email === userData.email && user.password === userData.password);
+    const loggedInUser = users.find(
+      (user) =>
+        user.email === userData.email && user.password === userData.password
+    );
 
     if (loggedInUser) {
-      console.log('Все ОК');
+      console.log("Все ОК");
       loggedInUser.status = true;
 
-      localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
 
       try {
-        await axios.put(`https://634e9f834af5fdff3a625f84.mockapi.io/users/${loggedInUser.id}`, loggedInUser);
+        await axios.put(
+          `https://634e9f834af5fdff3a625f84.mockapi.io/users/${loggedInUser.id}`,
+          loggedInUser
+        );
         setInvalidEmail(false);
         setInvalidPassword(false);
-        window.location.href = 'index.html';
+        window.location.href = "index.html";
       } catch (error) {
         console.log(error);
       }
-    } else if (users.find(user => user.email === userData.email)) {
+    } else if (users.find((user) => user.email === userData.email)) {
       setInvalidPassword(true);
       setInvalidEmail(false);
-      console.log('Неправильний пароль');
+      console.log("Неправильний пароль");
     } else {
       setInvalidEmail(true);
       setInvalidPassword(false);
-      console.log('Неправильний email');
+      console.log("Неправильний email");
     }
   }
 
@@ -83,12 +94,12 @@ export default function LoginForm() {
     } else {
       const users = await getUsers();
 
-      if (users.some(element => element.email === email)) {
+      if (users.some((element) => element.email === email)) {
         setMailAlreadyExist(true);
       } else {
         try {
           await createUser(name, email, password);
-          window.location.href = 'index.html';
+          window.location.href = "index.html";
         } catch (error) {
           console.log(error);
         }
@@ -118,7 +129,7 @@ export default function LoginForm() {
             name="email"
             placeholder="Email Address"
             value={email}
-            onChange={event => setEmail(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
             required
           />
         </div>
@@ -129,11 +140,13 @@ export default function LoginForm() {
             name="password"
             placeholder="Password"
             value={password}
-            onChange={event => setPassword(event.target.value)}
+            onChange={(event) => setPassword(event.target.value)}
             required
           />
         </div>
-        <button type="submit" id="loginFormButtom">Sign in</button>
+        <button type="submit" id="loginFormButtom">
+          Sign in
+        </button>
       </form>
 
       <form className="registrationForm" onSubmit={handleRegistrationSubmit}>
@@ -155,7 +168,7 @@ export default function LoginForm() {
             name="name"
             placeholder="Full name"
             value={name}
-            onChange={event => setName(event.target.value)}
+            onChange={(event) => setName(event.target.value)}
             required
           />
         </div>
@@ -166,7 +179,7 @@ export default function LoginForm() {
             name="email"
             placeholder="Email Address"
             value={email}
-            onChange={event => setEmail(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
             required
           />
         </div>
@@ -177,7 +190,7 @@ export default function LoginForm() {
             name="password"
             placeholder="Password"
             value={password}
-            onChange={event => setPassword(event.target.value)}
+            onChange={(event) => setPassword(event.target.value)}
             required
           />
         </div>
@@ -188,11 +201,13 @@ export default function LoginForm() {
             name="verify-password"
             placeholder="Verify Password"
             value={verifyPassword}
-            onChange={event => setVerifyPassword(event.target.value)}
+            onChange={(event) => setVerifyPassword(event.target.value)}
             required
           />
         </div>
-        <button type="submit" id="registrationButton">Create Account</button>
+        <button type="submit" id="registrationButton">
+          Create Account
+        </button>
       </form>
     </div>
   );
