@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(232, 228, 228);
+  }
+
+
+header{
+    background-color: forestgreen;
+    padding: 5px 50px;  
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.logo{
+    display: flex;
+}
+
+.logo_redirect{
+    display: flex;
+}
+
+
+.right_block{
+    display: flex;
+    margin: 10px;
+    gap: 10px;
+}
+
+.login_block{
+    display: flex;
+    align-items: center;
+}
+
+.login{
+    color: white;
+    text-decoration: none;
+}
+
+.logOutBlock{
+    display: flex;
+    align-items: center;
+       display: none;
+}
+
+.logOut{
+    color: white;
+    text-decoration: none;
+}
+
+.shopping_block{
+    display: flex;
+    border-left: solid 2px white;
+    padding-left: 10px;
+}
+.shopping_cart{
+    display: flex;
+}
+
+.cart_counter{
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: -6px;
+    color: forestgreen;
+}
