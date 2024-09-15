@@ -1,0 +1,14 @@
+body {
+        width: 100vw;
+        height: 100vh;
+}
+
+  .block {
+    width: 100px;
+    height: 100px;
+    background: rgb(230, 4, 4);
+    position: relative;
+    left: 0;
+    top: 0;
+    transition: 0.5s;
+  }
